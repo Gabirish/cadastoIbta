@@ -1,0 +1,54 @@
+<%= form_for(usuario) do |f| %>
+  <% if usuario.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(usuario.errors.count, "error") %> prohibited this usuario from being saved:</h2>
+
+
+	 
+
+      <ul>
+      <% usuario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+	<%= f.radio_button :pf_pj, 'Pessoa Fisica' %>
+	<%= f.label :pf_pj, 'Pessoa Fisica', :value =>'Pessoa Fisica' %>
+	<%= f.radio_button :pf_pj, 'Pessoa Juridica' %>
+	<%= f.label :pf_pj, 'Pessoa Juridica', :value =>'Pessoa Juridica' %>
+   	 
+
+	 
+  </div> 
+
+  <div class="field">
+    <%= f.label :nome, "Nome" %>
+    <%= f.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= f.label :sexo, "Sexo" %>
+    <%= f.select :sexo, ['Masculino','Feminino', ' ' ] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :data_nascimento, "Data de Nascimento" %>
+    <%= f.date_select(:data_nascimento, options ={:order =>[:day, :month, :year], :use_month_names=> ["Janeiro", "fevereiro", "Março","Abril" ,"Maio","Junho","Julho","Agosto","Setembro","Outubro", "Novembro", "Dezembro"], :start_year=>1900, :end_year=> Time.now.year}, html_options={:class=>'select_medio'}) %>
+  </div>
+	 
+		
+  <div class="field">
+    <%= f.label :cpf, "CPF / CNPJ" %>
+    <%= f.text_field :cpf %>
+  </div>
+	
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
